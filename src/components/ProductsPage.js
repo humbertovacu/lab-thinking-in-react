@@ -9,7 +9,7 @@ function ProductsPage () {
     return(
         <div>
           <h1>IronStore</h1>
-          <SearchBar/>
+          <SearchBar products = {products} setProducts = {setProducts} jsonData = {jsonData}/>
           <ProductTable products = {products}/>
         </div>    
     )
