@@ -6,7 +6,7 @@ function searchBar(){
             <br/>
             <div>
                 <input type="checkbox" id="inStock" name="isInStock"/>
-                <label for="inStock">Only show products in stock</label>
+                <label htmlFor="inStock">Only show products in stock</label>
             </div>
         </div>
     )

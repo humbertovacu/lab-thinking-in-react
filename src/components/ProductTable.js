@@ -1,11 +1,19 @@
-function ProductTable(){
+import ProductRow from "./ProductRow"
+
+function ProductTable(props){
+    const { products } = props;
     return(
         <div>
             <table>
-                <tr>
-                   <th>Name</th>
-                   <th>Price</th> 
-                </tr>
+                <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Price</th> 
+                    </tr>
+                </thead>
+                <tbody>
+                    <ProductRow products = {products}/>
+                </tbody>
             </table>
         </div>
     )
