@@ -1,8 +1,11 @@
-function searchBar(props){
+import { useState } from 'react';
+
+function SearchBar(props){
     const { products, setProducts, jsonData } = props;
     const filterResults = (event) => {
         const userSearch = event.target.value;
         const productFilter = jsonData.filter(item => {
+            
             const itemName = item.name;
             const placeholderName = itemName.slice(0, userSearch.length)
             return placeholderName === userSearch
@@ -16,18 +19,26 @@ function searchBar(props){
         }
     }
 
+    const filterAvailable = (event) => {
+        if (event.target.checked) {
+            const productsInStock = products.filter(product => product.inStock)
+            setProducts(productsInStock)
+        } else setProducts(jsonData)
+    }
+
+
     return(
         <div>
             <h2>Search</h2>
             <input type="text" onChange={filterResults}></input>
             <br/>
             <div>
-                <input type="checkbox" id="inStock" name="isInStock" />
+                <input type="checkbox" id="inStock" name="isInStock" onChange={filterAvailable}/>
                 <label htmlFor="inStock">Only show products in stock</label>
             </div>
         </div>
     )
 }
 
-export default searchBar
+export default SearchBar
 
