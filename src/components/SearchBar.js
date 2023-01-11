@@ -2,10 +2,14 @@ import { useState } from 'react';
 
 function SearchBar(props){
     const { products, setProducts, jsonData } = props;
+    const [isAvailable, updateProducts] = useState(false)
+    const availableProducts = jsonData.filter(product => product.inStock);
+
     const filterResults = (event) => {
+        const chooseArray = (selectedArray) => {
+        isAvailable ? selectedArray = jsonData : selectedArray = availableProducts;
         const userSearch = event.target.value;
-        const productFilter = jsonData.filter(item => {
-            
+        const productFilter = selectedArray.filter(item => {
             const itemName = item.name;
             const placeholderName = itemName.slice(0, userSearch.length)
             return placeholderName === userSearch
@@ -16,14 +20,17 @@ function SearchBar(props){
         setProducts(productFilter)
         } else {
         setProducts(products)
-        }
+        }}
+        chooseArray()
     }
 
     const filterAvailable = (event) => {
         if (event.target.checked) {
             const productsInStock = products.filter(product => product.inStock)
+            updateProducts(false)
             setProducts(productsInStock)
-        } else setProducts(jsonData)
+        } else { updateProducts(true);
+            setProducts(jsonData)}
     }
 
 

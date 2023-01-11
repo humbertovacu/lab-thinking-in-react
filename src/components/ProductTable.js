@@ -3,8 +3,8 @@ import ProductRow from "./ProductRow"
 function ProductTable(props){
     const { products } = props;
     return(
-        <div>
-            <table>
+        <div className="productTable">
+            <table >
                 <thead>
                     <tr>
                     <th>Name</th>
